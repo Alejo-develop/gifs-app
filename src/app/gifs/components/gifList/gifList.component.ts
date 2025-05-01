@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { ListItemComponent } from './listItem/listItem.component';
+import { Gif } from '../../interfaces/gif.interfaces';
 
 @Component({
   selector: 'gif-list',
@@ -7,18 +8,5 @@ import { ListItemComponent } from './listItem/listItem.component';
   imports: [ListItemComponent],
 })
 export class GifListComponent {
-  imgs: string[] = [
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg',
-  ];
+  gifs = input.required<Gif[]>()
 }

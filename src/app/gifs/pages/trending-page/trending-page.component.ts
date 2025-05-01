@@ -8,5 +8,5 @@ import { GiphyService } from '../../services/giphy.service';
   templateUrl: './trending-page.component.html',
 })
 export default class TrendingPageComponent {
-  gifsServices = inject(GiphyService );
+  gifsServices = inject(GiphyService);
 }

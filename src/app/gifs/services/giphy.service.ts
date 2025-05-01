@@ -8,15 +8,18 @@ import { GifMapper } from '../mapper/gif.mapper';
 @Injectable({ providedIn: 'root' })
 export class GiphyService {
   private http = inject(HttpClient);
+  constructor() {
+    this.loadTrendingGifs();
+  }
 
   trendingGifs = signal<Gif[]>([]);
   trendingGifsLoading = signal<boolean>(true);
 
   loadTrendingGifs() {
     this.http
-      .get<GiphyResponse>(`${environment.giphyApiUrl} /gifs/trending`, {
+      .get<GiphyResponse>(`${environment.giphyApiUrl}/gifs/trending`, {
         params: {
-          api_Key: environment.gifsApiKey,
+          api_key: environment.gifsApiKey,
           limit: 20,
         },
       })
@@ -24,6 +27,21 @@ export class GiphyService {
         const gifs = GifMapper.mapGiphyArrayToGifArray(res.data);
         this.trendingGifs.set(gifs);
         this.trendingGifsLoading.set(false);
+      });
+  }
+
+  searchGifs(query: string) {
+    this.http
+      .get<GiphyResponse>(`${environment.giphyApiUrl}/gifs/search`, {
+        params: {
+          api_key: environment.gifsApiKey,
+          limit: 20,
+          q: query,
+        },
+      })
+      .subscribe((res) => {
+        const gifs = GifMapper.mapGiphyArrayToGifArray(res.data);
+        console.log({ search: gifs });
       });
   }
 }
