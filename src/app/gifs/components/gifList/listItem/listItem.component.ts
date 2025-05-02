@@ -7,7 +7,4 @@ import { Gif } from 'src/app/gifs/interfaces/gif.interfaces';
 })
 export class ListItemComponent {
   gif = input.required<Gif>()
-  ngOnInit() {
-    console.log('GIF recibido en list-item:', this.gif());
-  }
 }
